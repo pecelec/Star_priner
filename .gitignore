@@ -1,0 +1,6 @@
+/frontend/.env
+/agent/.env
+.env.local
+.venv/
+node_modules/
+dist/
