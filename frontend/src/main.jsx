@@ -212,8 +212,7 @@ function App() {
         <div className="tv-panel" aria-hidden="true">
           <div className="tv-screen">
             <div className="colour-bars"></div>
-            <div className="screen-copy">
-              <span className="label">THE</span>
+            <div className="screen-copy">             
               <strong className="mr">MR.</strong>
               <strong className="thing">THING</strong>
             </div>
