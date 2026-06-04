@@ -65,10 +65,10 @@ body {
   z-index: 1;
   min-height: calc(100vh - 68px);
   display: grid;
-  grid-template-columns: minmax(280px, 0.82fr) minmax(340px, 620px);
+  grid-template-columns: minmax(280px, 0.92fr) minmax(300px, 540px);
   align-items: center;
-  gap: 42px;
-  max-width: 1180px;
+  gap: 56px;
+  max-width: 1100px;
   margin: 0 auto;
 }
 
@@ -128,7 +128,7 @@ body {
 
 .screen-copy {
   position: absolute;
-  inset: 12% 9% 8%;
+  inset: 12% 4% 8% 7%;
   z-index: 2;
   color: #fff;
   transform: rotate(-2deg);
@@ -138,38 +138,27 @@ body {
     0 4px 0 #000;
 }
 
-.screen-copy .label {
-  display: inline-block;
-  background: var(--thing-red);
-  padding: 4px 10px 5px;
-  font-family: Archivo Black, Anton, sans-serif;
-  font-size: clamp(18px, 3vw, 31px);
-  line-height: 1;
-  letter-spacing: 0.08em;
-  transform: rotate(-10deg) translate(12px, 0);
-}
-
 .screen-copy strong {
   display: block;
   font-family: Georgia, "Times New Roman", serif;
   font-style: italic;
   font-weight: 800;
-  letter-spacing: -0.08em;
+  letter-spacing: -0.095em;
   white-space: nowrap;
 }
 
 .screen-copy .mr {
-  font-size: clamp(62px, 7.8vw, 96px);
-  line-height: 0.78;
-  margin-top: 22px;
+  font-size: clamp(54px, 6.4vw, 82px);
+  line-height: 0.82;
+  margin-top: 24px;
   margin-left: 8px;
 }
 
 .screen-copy .thing {
-  font-size: clamp(58px, 7.3vw, 92px);
-  line-height: 0.72;
-  margin-left: 14px;
-  margin-top: 2px;
+  font-size: clamp(49px, 5.9vw, 76px);
+  line-height: 0.78;
+  margin-left: 10px;
+  margin-top: 8px;
 }
 
 .tv-side {
@@ -192,13 +181,15 @@ body {
 }
 
 .card {
+  width: min(100%, 520px);
+  justify-self: center;
   background: var(--thing-green);
   border: 6px solid #111;
   box-shadow:
-    14px 14px 0 var(--thing-yellow),
-    24px 24px 0 var(--thing-red),
+    12px 12px 0 var(--thing-yellow),
+    21px 21px 0 var(--thing-red),
     0 30px 60px rgba(0, 0, 0, 0.25);
-  padding: clamp(24px, 4vw, 42px);
+  padding: clamp(22px, 3.5vw, 34px);
   transform: rotate(1deg);
 }
 
@@ -209,7 +200,7 @@ body {
   padding: 8px 12px;
   font-family: Anton, Impact, sans-serif;
   letter-spacing: 0.05em;
-  font-size: 16px;
+  font-size: 15px;
   transform: rotate(-2deg);
   margin-bottom: 14px;
 }
@@ -217,8 +208,8 @@ body {
 h1 {
   margin: 0;
   font-family: Anton, Impact, sans-serif;
-  font-size: clamp(48px, 8vw, 92px);
-  line-height: 0.9;
+  font-size: clamp(42px, 6.8vw, 78px);
+  line-height: 0.92;
   text-transform: uppercase;
   letter-spacing: 0.01em;
   color: #fff;
@@ -228,15 +219,15 @@ h1 {
 }
 
 .intro {
-  margin: 18px 0 26px;
-  font-size: 18px;
+  margin: 18px 0 24px;
+  font-size: 17px;
   font-weight: 900;
-  max-width: 46ch;
+  max-width: 42ch;
 }
 
 .form {
   display: grid;
-  gap: 18px;
+  gap: 16px;
 }
 
 label {
@@ -256,18 +247,18 @@ textarea {
   width: 100%;
   border: 4px solid #111;
   border-radius: 0;
-  padding: 14px 16px;
+  padding: 13px 15px;
   background: var(--thing-paper);
   color: #111;
   font: inherit;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 700;
   box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.24);
 }
 
 textarea {
   resize: vertical;
-  min-height: 190px;
+  min-height: 180px;
   line-height: 1.4;
 }
 
@@ -281,11 +272,11 @@ button {
   justify-self: start;
   border: 5px solid #111;
   border-radius: 999px;
-  padding: 16px 26px;
+  padding: 15px 24px;
   background: var(--thing-red);
   color: #fff;
   font-family: Anton, Impact, sans-serif;
-  font-size: 28px;
+  font-size: 26px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   cursor: pointer;
@@ -304,7 +295,7 @@ button:disabled {
 }
 
 .message {
-  margin: 22px 0 0;
+  margin: 20px 0 0;
   padding: 12px 14px;
   background: var(--thing-yellow);
   border: 4px solid #111;
@@ -320,6 +311,7 @@ button:disabled {
   .hero {
     grid-template-columns: 1fr;
     gap: 28px;
+    max-width: 620px;
   }
 
   .tv-panel {
@@ -329,6 +321,11 @@ button:disabled {
 
   .card {
     transform: none;
+    width: min(100%, 520px);
+  }
+
+  h1 {
+    font-size: clamp(42px, 13vw, 72px);
   }
 }
 
@@ -345,12 +342,16 @@ button:disabled {
     left: 112px;
   }
 
+  .screen-copy {
+    inset: 13% 2% 8% 6%;
+  }
+
   .screen-copy .mr {
-    font-size: 64px;
+    font-size: clamp(48px, 16vw, 62px);
   }
 
   .screen-copy .thing {
-    font-size: 60px;
+    font-size: clamp(43px, 14.5vw, 56px);
   }
 
   button {

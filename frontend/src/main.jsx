@@ -60,10 +60,6 @@ function black(bytes) {
   bytes.push(ESC, 0x35);
 }
 
-function red(bytes) {
-  bytes.push(ESC, 0x34);
-}
-
 function wrapLine(line, width = 32) {
   const words = normaliseForStar(line).split(/\s+/);
   const out = [];
@@ -212,7 +208,7 @@ function App() {
         <div className="tv-panel" aria-hidden="true">
           <div className="tv-screen">
             <div className="colour-bars"></div>
-            <div className="screen-copy">             
+            <div className="screen-copy">
               <strong className="mr">MR.</strong>
               <strong className="thing">THING</strong>
             </div>
