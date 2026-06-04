@@ -305,23 +305,28 @@ button:disabled {
 
 @media (max-width: 900px) {
   .thing-page {
-    padding: 18px;
+    padding: 22px 18px 34px;
+    overflow-x: hidden;
+    overflow-y: auto;
   }
 
   .hero {
     grid-template-columns: 1fr;
-    gap: 28px;
+    gap: 38px;
     max-width: 620px;
+    min-height: auto;
+    align-items: start;
   }
 
   .tv-panel {
-    width: min(420px, 92vw);
+    width: min(420px, 90vw);
     margin: 0 auto;
   }
 
   .card {
     transform: none;
-    width: min(100%, 520px);
+    width: min(100%, 500px);
+    margin: 0 auto 20px;
   }
 
   h1 {
@@ -329,17 +334,45 @@ button:disabled {
   }
 }
 
+/* Phone layout: make the form breathe and keep the comedy styling without crushing the content */
 @media (max-width: 560px) {
+  .thing-page {
+    padding: 18px 22px 42px;
+  }
+
   .stripe {
-    width: 60px;
+    width: 58px;
+    min-width: 58px;
+  }
+
+  .stripe-red {
+    left: -34px;
   }
 
   .stripe-yellow {
-    left: 52px;
+    left: 32px;
   }
 
   .stripe-purple {
-    left: 112px;
+    left: 96px;
+  }
+
+  .hero {
+    gap: 42px;
+  }
+
+  .tv-panel {
+    width: min(92vw, 390px);
+    border-width: 8px;
+    border-radius: 28px 46px 38px 28px;
+    box-shadow:
+      0 20px 0 #19100e,
+      0 26px 42px rgba(0, 0, 0, 0.38);
+  }
+
+  .tv-screen {
+    border-width: 7px;
+    border-radius: 22px;
   }
 
   .screen-copy {
@@ -354,8 +387,112 @@ button:disabled {
     font-size: clamp(43px, 14.5vw, 56px);
   }
 
+  .card {
+    width: 100%;
+    border-width: 5px;
+    padding: 24px 22px 26px;
+    box-shadow:
+      8px 8px 0 var(--thing-yellow),
+      14px 14px 0 var(--thing-red),
+      0 22px 42px rgba(0, 0, 0, 0.22);
+  }
+
+  .kicker {
+    font-size: 13px;
+    line-height: 1.05;
+    padding: 7px 9px;
+    margin-bottom: 18px;
+    max-width: 100%;
+  }
+
+  h1 {
+    font-size: clamp(44px, 15vw, 60px);
+    line-height: 0.96;
+    text-shadow:
+      3px 3px 0 #111,
+      6px 6px 0 var(--thing-pink);
+    margin-bottom: 22px;
+  }
+
+  .intro {
+    font-size: 17px;
+    line-height: 1.28;
+    margin: 0 0 32px;
+  }
+
+  .form {
+    gap: 26px;
+  }
+
+  label {
+    gap: 12px;
+  }
+
+  label span {
+    font-size: 15px;
+  }
+
+  input,
+  textarea {
+    border-width: 4px;
+    padding: 17px 18px;
+    font-size: 18px;
+    line-height: 1.35;
+    box-shadow: 7px 7px 0 rgba(0, 0, 0, 0.24);
+  }
+
+  input {
+    min-height: 78px;
+  }
+
+  textarea {
+    min-height: 250px;
+  }
+
   button {
     width: 100%;
-    font-size: 24px;
+    margin-top: 6px;
+    padding: 19px 20px;
+    font-size: clamp(25px, 8vw, 34px);
+    line-height: 1;
+    box-shadow: 8px 8px 0 #111;
+  }
+
+  .message {
+    margin-top: 28px;
+    line-height: 1.25;
+  }
+}
+
+/* Very narrow phones */
+@media (max-width: 390px) {
+  .thing-page {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .card {
+    padding: 22px 18px 24px;
+  }
+
+  .kicker {
+    font-size: 12px;
+  }
+
+  h1 {
+    font-size: clamp(40px, 14vw, 54px);
+  }
+
+  .intro {
+    font-size: 16px;
+  }
+
+  input,
+  textarea {
+    padding: 15px 15px;
+  }
+
+  textarea {
+    min-height: 230px;
   }
 }
