@@ -1,0 +1,71 @@
+name: Build RUT240 OSC listener
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "osc_star_printer.c"
+      - "Makefile"
+      - ".github/workflows/build-rut240-osc.yml"
+
+jobs:
+  build-mips-static:
+    name: Build generic big-endian MIPS static binary
+    runs-on: ubuntu-22.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install MIPS cross compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gcc-mips-linux-gnu binutils-mips-linux-gnu file
+
+      - name: Build static MIPS binary
+        run: |
+          mips-linux-gnu-gcc -Os -static -s -o osc_star_printer_mips_static osc_star_printer.c
+          file osc_star_printer_mips_static
+          mips-linux-gnu-readelf -h osc_star_printer_mips_static | head -40
+
+      - name: Upload static MIPS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: osc_star_printer_mips_static
+          path: osc_star_printer_mips_static
+
+  build-openwrt-ar71xx:
+    name: Build OpenWrt 19.07 ar71xx/musl binary
+    runs-on: ubuntu-22.04
+    env:
+      SDK_URL: https://downloads.openwrt.org/releases/19.07.10/targets/ar71xx/generic/openwrt-sdk-19.07.10-ar71xx-generic_gcc-7.5.0_musl.Linux-x86_64.tar.xz
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install SDK extraction tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential wget xz-utils file findutils
+
+      - name: Download OpenWrt SDK
+        run: |
+          wget -O openwrt-sdk.tar.xz "$SDK_URL"
+          tar -xf openwrt-sdk.tar.xz
+          find . -maxdepth 2 -type d -name "openwrt-sdk-*"
+
+      - name: Build with OpenWrt SDK compiler
+        run: |
+          SDK_DIR="$(find "$PWD" -maxdepth 1 -type d -name 'openwrt-sdk-*' | head -n 1)"
+          echo "SDK_DIR=$SDK_DIR"
+          CC="$(find "$SDK_DIR/staging_dir" -type f \( -name 'mips-openwrt-linux-musl-gcc' -o -name 'mips-openwrt-linux-uclibc-gcc' \) | head -n 1)"
+          echo "CC=$CC"
+          if [ -z "$CC" ]; then
+            echo "Could not find OpenWrt MIPS compiler in SDK"
+            exit 1
+          fi
+          "$CC" -Os -static -s -o osc_star_printer_openwrt_ar71xx osc_star_printer.c
+          file osc_star_printer_openwrt_ar71xx
+
+      - name: Upload OpenWrt artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: osc_star_printer_openwrt_ar71xx
+          path: osc_star_printer_openwrt_ar71xx
