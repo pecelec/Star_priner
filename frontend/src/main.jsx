@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+﻿import React, { useMemo, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { supabase } from "./supabaseClient";
 import "./style.css";
@@ -9,12 +9,14 @@ const GS = 0x1d;
 const RS = 0x1e;
 const LF = 0x0a;
 
+const MAX_MESSAGE_CHARS = 500;
+
 function normaliseForStar(text) {
   return String(text)
-    .replace(/[‘’‚‛]/g, "'")
-    .replace(/[“”„]/g, '"')
-    .replace(/[–—−]/g, "-")
-    .replace(/…/g, "...")
+    .replace(/[â€˜â€™â€šâ€›]/g, "'")
+    .replace(/[â€œâ€â€ž]/g, '"')
+    .replace(/[â€“â€”âˆ’]/g, "-")
+    .replace(/â€¦/g, "...")
     .replace(/\u00a0/g, " ");
 }
 
@@ -236,12 +238,13 @@ function App() {
 
             <label>
               <span>Message</span>
+              <p className="message-rule">Use up to 4 times per show</p>
               <textarea
                 value={body}
-                onChange={(event) => setBody(event.target.value)}
+                onChange={(event) => setBody(event.target.value.slice(0, MAX_MESSAGE_CHARS))}
                 placeholder="Write your message here..."
                 rows={8}
-                maxLength={1500}
+                maxLength={MAX_MESSAGE_CHARS}
               />
             </label>
 
@@ -258,3 +261,4 @@ function App() {
 }
 
 createRoot(document.getElementById("root")).render(<App />);
+

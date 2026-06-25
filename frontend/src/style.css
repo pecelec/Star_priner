@@ -496,3 +496,36 @@ button:disabled {
     min-height: 230px;
   }
 }
+
+.message-rule {
+  margin: 0 0 2px;
+  display: inline-block;
+  width: fit-content;
+  background: var(--thing-yellow);
+  border: 3px solid #111;
+  padding: 7px 10px;
+  font-family: Archivo Black, Anton, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  line-height: 1.05;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.22);
+}
+
+.char-count {
+  justify-self: end;
+  font-family: Archivo Black, Anton, sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  opacity: 0.78;
+}
+
+@media (max-width: 560px) {
+  .message-rule {
+    font-size: 13px;
+    padding: 8px 9px;
+  }
+
+  .char-count {
+    font-size: 12px;
+  }
+}
